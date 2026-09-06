@@ -4,10 +4,32 @@ import DecorativeRing from "@/components/DecorativeRing";
 import { siteConfig } from "@/lib/site-content";
 
 const photos = [
-  { src: "/images/intro-1.svg", alt: "Corte de pelo en Barbas", rotate: -20, offset: false },
-  { src: "/images/intro-2.svg", alt: "Arreglo de barba en Barbas", rotate: 35, offset: true },
-  { src: "/images/intro-3.svg", alt: "Sillón de la barbería Barbas", rotate: 150, offset: true },
-  { src: "/images/intro-4.svg", alt: "Detalle del salón Barbas", rotate: 210, offset: false },
+  {
+    src: "/images/intro-1.svg",
+    alt: "Corte de pelo en Barbas",
+    rotate: -20,
+    offset: false,
+    unoptimized: true,
+  },
+  {
+    src: "/images/intro-2.webp",
+    alt: "Arreglo de barba en Barbas",
+    rotate: 35,
+    offset: true,
+  },
+  {
+    src: "/images/intro-3.jpg",
+    alt: "Corte de pelo con tijera y peine en Barbas",
+    rotate: 150,
+    offset: true,
+  },
+  {
+    src: "/images/intro-4.svg",
+    alt: "Detalle del salón Barbas",
+    rotate: 210,
+    offset: false,
+    unoptimized: true,
+  },
 ];
 
 export default function IntroSection() {
@@ -57,7 +79,8 @@ export default function IntroSection() {
                     src={photo.src}
                     alt={photo.alt}
                     fill
-                    unoptimized
+                    unoptimized={photo.unoptimized}
+                    sizes="(min-width: 768px) 20vw, 40vw"
                     className="object-cover"
                   />
                 </div>
