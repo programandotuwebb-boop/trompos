@@ -1,0 +1,8 @@
+<svg width="200" height="200" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+  <!-- Placeholder: reemplazar por la foto real de la persona -->
+  <circle cx="100" cy="100" r="100" fill="#e3d7bf"/>
+  <g fill="none" stroke="#93816f" stroke-width="7" stroke-linecap="round">
+    <circle cx="100" cy="80" r="32"/>
+    <path d="M40 168c0-38 27-58 60-58s60 20 60 58"/>
+  </g>
+</svg>

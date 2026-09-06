@@ -1,0 +1,24 @@
+<svg width="1920" height="1280" viewBox="0 0 1920 1280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Placeholder de fondo: reemplazar por una foto real del local/corte de pelo -->
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2b2620"/>
+      <stop offset="55%" stop-color="#1c1c1c"/>
+      <stop offset="100%" stop-color="#141414"/>
+    </linearGradient>
+    <linearGradient id="stripe" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ab9784" stop-opacity="0"/>
+      <stop offset="50%" stop-color="#ab9784" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#ab9784" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+  <rect width="1920" height="1280" fill="url(#bg)"/>
+  <g opacity="0.5">
+    <circle cx="1500" cy="380" r="620" fill="url(#stripe)"/>
+    <circle cx="380" cy="900" r="520" fill="url(#stripe)"/>
+  </g>
+  <g stroke="#ab9784" stroke-opacity="0.15" stroke-width="2">
+    <line x1="0" y1="220" x2="1920" y2="140"/>
+    <line x1="0" y1="1060" x2="1920" y2="1140"/>
+  </g>
+</svg>

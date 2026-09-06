@@ -1,0 +1,10 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Placeholder: reemplazar por foto real de un corte de pelo -->
+  <rect width="400" height="400" fill="#e3d7bf"/>
+  <g stroke="#1c1c1c" stroke-width="9" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.8">
+    <circle cx="150" cy="270" r="26"/>
+    <circle cx="250" cy="270" r="26"/>
+    <line x1="150" y1="270" x2="284" y2="132"/>
+    <line x1="250" y1="270" x2="116" y2="132"/>
+  </g>
+</svg>

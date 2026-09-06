@@ -1,0 +1,57 @@
+<svg width="1920" height="1280" viewBox="0 0 1920 1280" xmlns="http://www.w3.org/2000/svg">
+  <!-- Placeholder en blanco y negro: reemplazar por una foto real de la calle/barrio de Belgrano R -->
+  <defs>
+    <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#3a3a3a"/>
+      <stop offset="45%" stop-color="#2a2a2a"/>
+      <stop offset="100%" stop-color="#1a1a1a"/>
+    </linearGradient>
+    <linearGradient id="fade" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.35"/>
+    </linearGradient>
+  </defs>
+  <rect width="1920" height="1280" fill="url(#sky)"/>
+
+  <!-- Siluetas de fachadas -->
+  <g fill="#151515">
+    <rect x="0" y="700" width="260" height="580"/>
+    <rect x="240" y="620" width="220" height="660"/>
+    <rect x="440" y="760" width="300" height="520"/>
+    <rect x="720" y="560" width="260" height="720"/>
+    <rect x="960" y="680" width="340" height="600"/>
+    <rect x="1280" y="600" width="240" height="680"/>
+    <rect x="1500" y="740" width="260" height="540"/>
+    <rect x="1740" y="640" width="180" height="640"/>
+  </g>
+
+  <!-- Ventanas -->
+  <g fill="#3d3d3d" opacity="0.55">
+    <rect x="280" y="660" width="30" height="46"/>
+    <rect x="340" y="660" width="30" height="46"/>
+    <rect x="280" y="740" width="30" height="46"/>
+    <rect x="340" y="740" width="30" height="46"/>
+    <rect x="760" y="620" width="34" height="50"/>
+    <rect x="830" y="620" width="34" height="50"/>
+    <rect x="760" y="710" width="34" height="50"/>
+    <rect x="830" y="710" width="34" height="50"/>
+    <rect x="1000" y="740" width="32" height="46"/>
+    <rect x="1060" y="740" width="32" height="46"/>
+    <rect x="1320" y="660" width="30" height="46"/>
+    <rect x="1380" y="660" width="30" height="46"/>
+  </g>
+
+  <!-- Vereda -->
+  <rect x="0" y="1180" width="1920" height="100" fill="#111111"/>
+  <g stroke="#2c2c2c" stroke-width="2">
+    <line x1="0" y1="1180" x2="1920" y2="1180"/>
+    <line x1="120" y1="1180" x2="60" y2="1280"/>
+    <line x1="420" y1="1180" x2="380" y2="1280"/>
+    <line x1="720" y1="1180" x2="700" y2="1280"/>
+    <line x1="1020" y1="1180" x2="1020" y2="1280"/>
+    <line x1="1320" y1="1180" x2="1340" y2="1280"/>
+    <line x1="1620" y1="1180" x2="1660" y2="1280"/>
+  </g>
+
+  <rect width="1920" height="1280" fill="url(#fade)"/>
+</svg>

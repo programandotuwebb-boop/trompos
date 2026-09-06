@@ -1,0 +1,9 @@
+<svg width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+  <!-- Placeholder: reemplazar por foto real de un arreglo de barba -->
+  <rect width="400" height="400" fill="#f4efd6"/>
+  <g transform="rotate(-25 200 200)" opacity="0.8">
+    <rect x="80" y="185" width="120" height="30" rx="14" fill="#1c1c1c"/>
+    <polygon points="205,188 320,198 205,212" fill="#1c1c1c"/>
+    <circle cx="200" cy="200" r="11" fill="#f4efd6" stroke="#1c1c1c" stroke-width="6"/>
+  </g>
+</svg>
