@@ -2,6 +2,7 @@ import Hero from "@/components/Hero";
 import IntroSection from "@/components/IntroSection";
 import CommunitySection from "@/components/CommunitySection";
 import TurnoSection from "@/components/TurnoSection";
+import ServicesSection from "@/components/ServicesSection";
 
 export default function Home() {
   return (
@@ -10,7 +11,8 @@ export default function Home() {
       <IntroSection />
       <CommunitySection />
       <TurnoSection />
-      {/* Próximas secciones: Servicios, Galería, Footer */}
+      <ServicesSection />
+      {/* Próximas secciones: Galería, Footer */}
     </>
   );
 }
