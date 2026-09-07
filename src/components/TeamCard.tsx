@@ -1,4 +1,5 @@
 import Image from "next/image";
+import { siteConfig } from "@/lib/site-content";
 
 type TeamCardProps = {
   name: string;
@@ -9,7 +10,7 @@ type TeamCardProps = {
 export default function TeamCard({ name, phone, phoneHref }: TeamCardProps) {
   return (
     <div className="flex flex-col items-center text-center">
-      <div className="relative h-16 w-16 overflow-hidden rounded-full sm:h-28 sm:w-28">
+      <div className="relative h-24 w-24 overflow-hidden rounded-full sm:h-32 sm:w-32">
         <Image
           src="/images/avatar-placeholder.svg"
           alt={`Foto de ${name}`}
@@ -36,7 +37,7 @@ export default function TeamCard({ name, phone, phoneHref }: TeamCardProps) {
         </a>
         <a
           href={`https://wa.me/${phoneHref}?text=${encodeURIComponent(
-            `Hola ${name}! Quiero reservar un turno en Barbas.`
+            `Hola ${name}! Quiero reservar un turno en ${siteConfig.fullName}.`
           )}`}
           target="_blank"
           rel="noopener noreferrer"

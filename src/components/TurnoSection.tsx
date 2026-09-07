@@ -20,7 +20,7 @@ export default function TurnoSection() {
         <div className="mt-12 grid gap-10 lg:grid-cols-2">
           <FadeIn delayMs={100} className="flex flex-col gap-8">
             <div className="rounded-2xl bg-beige-dark p-6 sm:p-10">
-              <div className="grid grid-cols-2 gap-4 sm:gap-6">
+              <div className="flex justify-center">
                 {siteConfig.team.map((person) => (
                   <TeamCard key={person.name} {...person} />
                 ))}
@@ -34,7 +34,7 @@ export default function TurnoSection() {
             <div className="min-h-[320px] flex-1 overflow-hidden rounded-2xl shadow-sm">
               <iframe
                 src={siteConfig.mapEmbedUrl}
-                title="Ubicación de Barbas en Google Maps"
+                title="Ubicación de Janeiro Barber Studio en Google Maps"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 className="h-full w-full border-0"

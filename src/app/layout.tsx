@@ -16,25 +16,26 @@ const inter = Inter({
   display: "swap",
 });
 
-const siteUrl = "https://barbas.com.ar";
+// Dominio propio a confirmar — placeholder hasta que se compre/asigne uno real.
+const siteUrl = "https://janeirobarberstudio.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Barbas – Peluquería masculina desde 1982",
-    template: "%s | Barbas",
+    default: "Janeiro Barber Studio – Barbería en Ciudad Autónoma de Buenos Aires",
+    template: "%s | Janeiro Barber Studio",
   },
   description:
-    "Peluquería y barbería en el barrio de Belgrano R, Ciudad Autónoma de Buenos Aires, desde 1982. Cortes de pelo y arreglos de barba con más de 40 años de experiencia.",
+    "Janeiro Barber Studio, barbería en Jorge Newbery, Ciudad Autónoma de Buenos Aires. Cortes de pelo y arreglos de barba con atención personalizada.",
   keywords: [
-    "barbería Belgrano",
+    "barbería Jorge Newbery",
     "barbería CABA",
-    "peluquería masculina Belgrano",
-    "peluquería Belgrano R",
+    "peluquería masculina Buenos Aires",
+    "barber studio Buenos Aires",
     "corte de pelo hombre Buenos Aires",
-    "arreglo de barba Belgrano",
+    "arreglo de barba CABA",
   ],
-  authors: [{ name: "Barbas" }],
+  authors: [{ name: "Janeiro Barber Studio" }],
   alternates: {
     canonical: "/",
   },
@@ -42,10 +43,10 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_AR",
     url: siteUrl,
-    siteName: "Barbas",
-    title: "Barbas – Peluquería masculina desde 1982",
+    siteName: "Janeiro Barber Studio",
+    title: "Janeiro Barber Studio – Barbería en Ciudad Autónoma de Buenos Aires",
     description:
-      "Peluquería y barbería en el barrio de Belgrano R, CABA, desde 1982. Cortes de pelo y arreglos de barba.",
+      "Janeiro Barber Studio, barbería en Jorge Newbery, CABA. Cortes de pelo y arreglos de barba.",
   },
   robots: {
     index: true,

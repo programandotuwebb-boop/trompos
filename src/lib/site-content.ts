@@ -1,30 +1,24 @@
 export const siteConfig = {
-  name: "Barbas",
-  tagline: "Peluquería & Barbería",
-  domain: "barbas.com.ar",
-  since: 1982,
-  address: "Echeverría 3111, Belgrano, Ciudad Autónoma de Buenos Aires",
+  name: "Janeiro",
+  fullName: "Janeiro Barber Studio",
+  tagline: "Barber Studio",
+  // Dominio propio a confirmar — placeholder hasta que se compre/asigne uno real.
+  domain: "janeirobarberstudio.com",
+  address: "Jorge Newbery 2460, Ciudad Autónoma de Buenos Aires",
   mapEmbedUrl:
-    "https://www.google.com/maps?q=Echeverr%C3%ADa+3111,+Belgrano,+CABA&output=embed",
+    "https://www.google.com/maps?q=Jorge+Newbery+2460,+Ciudad+Aut%C3%B3noma+de+Buenos+Aires&output=embed",
   hero: {
-    eyebrow: "Bienvenidos a Barbas",
-    title: "Donde los hombres lucen mejor...",
-    subtitle: "No dude en reservar su turno",
-    cta: "Reserva de turno",
+    eyebrow: "Barber Studio",
+    title: "El corte que te define.",
+    subtitle: "Reservá tu turno en Janeiro.",
+    cta: "Reservar turno",
   },
   intro: {
-    eyebrow: "Introduciendo",
-    title: "Barbas",
-    subtitle: "Peluquería & Barbería",
-    since: "Desde 1982",
+    eyebrow: "Janeiro",
+    title: "Un espacio propio",
+    // Copy placeholder: confirmar posicionamiento/tono definitivo con el cliente.
     description:
-      "Peluquería y barbería ejerciendo en el barrio de Belgrano R desde 1982, con más de 40 años de experiencia. Siempre a la vanguardia de la moda en el mundo de la peluquería.",
-  },
-  community: {
-    title:
-      "Orgullosos de ejercer nuestra profesión en nuestro querido barrio de Belgrano R",
-    subtitle:
-      "Atendemos a los vecinos del barrio, con una mención especial a la Sociedad de Fomento de Belgrano R, Belgrano Athletic Club, colegios y locales comerciales aledaños.",
+      "Un espacio pensado para el cuidado masculino moderno, donde cada visita es una experiencia. Cortes de precisión y arreglos de barba, con atención personalizada de principio a fin.",
   },
   services: {
     eyebrow: "Servicios",
@@ -44,18 +38,13 @@ export const siteConfig = {
   },
   team: [
     {
-      name: "Hugo",
-      phone: "11.5493.3362",
-      phoneHref: "5491154933362",
-    },
-    {
-      name: "Ruben",
-      phone: "11.6748.7766",
-      phoneHref: "5491167487766",
+      name: "Tomás",
+      phone: "11.5994.4065",
+      phoneHref: "5491159944065",
     },
   ],
   whatsapp: {
-    phoneHref: "5491154933362",
-    message: "Hola! Quiero reservar un turno en Barbas.",
+    phoneHref: "5491159944065",
+    message: "Hola! Quiero reservar un turno en Janeiro Barber Studio.",
   },
 } as const;

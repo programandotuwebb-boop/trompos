@@ -10,6 +10,11 @@
   --color-taupe-dark: #93816f;
   --color-body: #6b6b6b;
   --color-muted-light: #c9c9c9;
+
+  /* Identidad Janeiro: acento cálido sobre fondos oscuros */
+  --color-ink: #0c0c0d;
+  --color-bronze: #b08d57;
+  --color-bronze-dark: #8f6f42;
 }
 
 @theme inline {
@@ -22,6 +27,9 @@
   --color-taupe-dark: var(--color-taupe-dark);
   --color-body: var(--color-body);
   --color-muted-light: var(--color-muted-light);
+  --color-ink: var(--color-ink);
+  --color-bronze: var(--color-bronze);
+  --color-bronze-dark: var(--color-bronze-dark);
 
   --font-serif: var(--font-playfair), Georgia, "Times New Roman", serif;
   --font-sans: var(--font-inter), Arial, Helvetica, sans-serif;
@@ -56,4 +64,37 @@ body {
     opacity: 1;
     transform: none;
   }
+}
+
+/* Reveal de entrada para el hero (no depende de scroll, corre al montar) */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes reveal-up {
+    from {
+      opacity: 0;
+      transform: translateY(28px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .reveal-up {
+    animation: reveal-up 0.9s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-up {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
+}
+
+/* Textura sutil de grano sobre fondos oscuros */
+.grain-overlay {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  opacity: 0.05;
+  mix-blend-mode: overlay;
 }

@@ -6,26 +6,26 @@ import { siteConfig } from "@/lib/site-content";
 const photos = [
   {
     src: "/images/intro-1.svg",
-    alt: "Corte de pelo en Barbas",
+    alt: "Corte de pelo en Janeiro Barber Studio",
     rotate: -20,
     offset: false,
     unoptimized: true,
   },
   {
     src: "/images/intro-2.webp",
-    alt: "Arreglo de barba en Barbas",
+    alt: "Arreglo de barba en Janeiro Barber Studio",
     rotate: 35,
     offset: true,
   },
   {
     src: "/images/intro-3.jpg",
-    alt: "Corte de pelo con tijera y peine en Barbas",
+    alt: "Corte de pelo con tijera y peine en Janeiro Barber Studio",
     rotate: 150,
     offset: true,
   },
   {
     src: "/images/intro-4.svg",
-    alt: "Detalle del salón Barbas",
+    alt: "Detalle del estudio Janeiro Barber Studio",
     rotate: 210,
     offset: false,
     unoptimized: true,
@@ -42,16 +42,14 @@ export default function IntroSection() {
           </p>
 
           <h2 className="mt-4 font-serif text-4xl text-charcoal sm:text-5xl">
-            {siteConfig.intro.title.toUpperCase()}
+            {siteConfig.intro.title}
           </h2>
 
-          <p className="mt-2 text-sm tracking-[0.2em] text-body">
-            {siteConfig.intro.subtitle.toUpperCase()}
-          </p>
-          <p className="mt-1 font-serif text-xl italic text-taupe">
-            {siteConfig.intro.since}
-          </p>
-
+          {/*
+            Copy placeholder: texto genérico de presentación a confirmar con el
+            cliente antes de publicar (no hay historia/posicionamiento definitivo
+            todavía para Janeiro Barber Studio).
+          */}
           <p className="mt-6 max-w-md leading-relaxed text-body">
             {siteConfig.intro.description}
           </p>

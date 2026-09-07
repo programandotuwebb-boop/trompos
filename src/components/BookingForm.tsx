@@ -19,7 +19,7 @@ export default function BookingForm() {
     const mensaje = String(data.get("mensaje") ?? "").trim();
 
     const lines = [
-      "Hola! Quiero reservar un turno en Barbas.",
+      `Hola! Quiero reservar un turno en ${siteConfig.fullName}.`,
       `Nombre: ${nombre}`,
       `Teléfono: ${telefono}`,
       `Servicio: ${servicio}`,
