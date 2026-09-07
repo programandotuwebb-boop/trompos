@@ -52,6 +52,21 @@ export default function Hero() {
             </span>
           </a>
         </div>
+
+        <div
+          className="reveal-up mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs tracking-[0.15em] text-white/50"
+          style={{ animationDelay: "480ms" }}
+        >
+          {siteConfig.services.items.map((item, index) => (
+            <span key={item.name} className="flex items-center gap-4">
+              {index > 0 && <span aria-hidden="true">·</span>}
+              <span>
+                {item.name.toUpperCase()}{" "}
+                <span className="text-white/30">— {item.duration.toUpperCase()}</span>
+              </span>
+            </span>
+          ))}
+        </div>
       </div>
     </section>
   );

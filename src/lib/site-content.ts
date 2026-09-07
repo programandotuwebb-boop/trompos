@@ -21,13 +21,9 @@ export const siteConfig = {
       "Un espacio pensado para el cuidado masculino moderno, donde cada visita es una experiencia. Cortes de precisión y arreglos de barba, con atención personalizada de principio a fin.",
   },
   services: {
-    eyebrow: "Servicios",
-    title: "¿Qué hacemos?",
-    description:
-      "Básicamente ofrecemos nuestros servicios de corte de pelo y barba a través de nuestros profesionales, haciendo que las sesiones sean totalmente amenas y con el fin de que nuestros clientes queden totalmente conformes y de esta manera conformar un vínculo de confianza.",
     items: [
-      { name: "Cortes de pelo" },
-      { name: "Arreglos de barba" },
+      { name: "Corte de pelo", duration: "45 min" },
+      { name: "Corte + Barba", duration: "1 hora" },
     ],
   },
   turno: {
@@ -47,5 +43,10 @@ export const siteConfig = {
   whatsapp: {
     phoneHref: "5491159944065",
     message: "Hola! Quiero reservar un turno en Janeiro Barber Studio.",
+  },
+  // TODO: reemplazar por el @ y el link reales cuando existan las cuentas.
+  socials: {
+    instagram: { handle: "@janeirobarberstudio", url: "https://instagram.com/janeirobarberstudio" },
+    facebook: { handle: "Janeiro Barber Studio", url: "https://facebook.com/janeirobarberstudio" },
   },
 } as const;

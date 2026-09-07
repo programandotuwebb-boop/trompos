@@ -3,6 +3,7 @@ import TeamCard from "@/components/TeamCard";
 import CalendarBooking from "@/components/CalendarBooking";
 import CancelBooking from "@/components/CancelBooking";
 import BookingErrorBoundary from "@/components/BookingErrorBoundary";
+import SocialLinks from "@/components/SocialLinks";
 import { siteConfig } from "@/lib/site-content";
 
 const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
@@ -35,14 +36,15 @@ export default function TurnoSection() {
 
         <div className="mt-12 grid gap-6 sm:grid-cols-2">
           <FadeIn delayMs={150}>
-            <div className="flex h-64 items-center justify-center rounded-2xl bg-beige-dark p-6">
+            <div className="flex h-full flex-col items-center justify-center gap-4 rounded-2xl bg-beige-dark p-6">
               {siteConfig.team.map((person) => (
                 <TeamCard key={person.name} {...person} />
               ))}
+              <SocialLinks className="text-body" />
             </div>
           </FadeIn>
 
-          <FadeIn delayMs={200} className="flex h-64 flex-col overflow-hidden rounded-2xl shadow-sm">
+          <FadeIn delayMs={200} className="flex min-h-[280px] flex-col overflow-hidden rounded-2xl shadow-sm">
             <iframe
               src={siteConfig.mapEmbedUrl}
               title="Ubicación de Janeiro Barber Studio en Google Maps"
