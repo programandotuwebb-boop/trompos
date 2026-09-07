@@ -5,17 +5,19 @@ type TeamCardProps = {
   name: string;
   phone: string;
   phoneHref: string;
+  photo?: string;
 };
 
-export default function TeamCard({ name, phone, phoneHref }: TeamCardProps) {
+export default function TeamCard({ name, phone, phoneHref, photo }: TeamCardProps) {
   return (
     <div className="flex flex-col items-center text-center">
-      <div className="relative h-24 w-24 overflow-hidden rounded-full sm:h-32 sm:w-32">
+      <div className="relative h-24 w-24 overflow-hidden rounded-full ring-1 ring-charcoal/10 sm:h-32 sm:w-32">
         <Image
-          src="/images/avatar-placeholder.svg"
+          src={photo ?? "/images/avatar-placeholder.svg"}
           alt={`Foto de ${name}`}
           fill
-          unoptimized
+          unoptimized={!photo}
+          sizes="128px"
           className="object-cover"
         />
       </div>
