@@ -15,6 +15,17 @@ export type ServiceKey = keyof typeof SERVICES;
 
 export type DaySlot = { iso: string; label: string };
 export type DayAvailability = { date: string; label: string; slots: DaySlot[] };
+export type BookingSummary = {
+  eventId: string;
+  dateLabel: string;
+  timeLabel: string;
+  serviceLabel: string;
+};
+
+// Tag interno para distinguir turnos creados por el sitio de cualquier otro
+// evento que pueda existir en el calendario (relevante sobre todo durante
+// las pruebas, ya que se usa un calendario personal).
+const BOOKING_SOURCE_TAG = "janeiro-web";
 
 function getEnv(name: string): string {
   const value = process.env[name];
@@ -191,9 +202,97 @@ export async function createBooking(input: {
       description: `Teléfono: ${input.phone}`,
       start: { dateTime: start.toISOString(), timeZone: BA_TIMEZONE },
       end: { dateTime: end.toISOString(), timeZone: BA_TIMEZONE },
-      extendedProperties: { private: { source: "janeiro-web" } },
+      extendedProperties: {
+        private: { source: BOOKING_SOURCE_TAG, service: input.service },
+      },
     },
   });
 
+  return { ok: true };
+}
+
+function onlyDigits(text: string): string {
+  return text.replace(/\D/g, "");
+}
+
+function extractPhoneDigits(description?: string | null): string {
+  if (!description) return "";
+  const match = description.match(/Tel[eé]fono:\s*(.+)/i);
+  return onlyDigits(match ? match[1] : description);
+}
+
+/**
+ * NOTA DE SEGURIDAD: la identificación para buscar/cancelar turnos es solo
+ * por número de teléfono, sin contraseña ni verificación adicional. Es
+ * intencional — para el volumen y el riesgo de una barbería, pedir más que
+ * el teléfono complicaría la experiencia sin necesidad real. La contra es
+ * que cualquiera que sepa el teléfono de otra persona podría, en teoría,
+ * ver y cancelar sus turnos. Si en el futuro hace falta más seguridad, una
+ * mejora simple sería pedir también el nombre y exigir que coincida con el
+ * de la reserva original.
+ */
+export async function findBookingsByPhone(phone: string): Promise<BookingSummary[]> {
+  const targetDigits = onlyDigits(phone);
+  if (!targetDigits) return [];
+
+  const calendar = getCalendarClient();
+  const calendarId = getCalendarId();
+
+  const response = await calendar.events.list({
+    calendarId,
+    timeMin: new Date().toISOString(),
+    singleEvents: true,
+    orderBy: "startTime",
+    privateExtendedProperty: [`source=${BOOKING_SOURCE_TAG}`],
+    maxResults: 50,
+  });
+
+  const events = response.data.items ?? [];
+
+  return events
+    .filter((event) => extractPhoneDigits(event.description) === targetDigits)
+    .map((event) => {
+      const start = new Date(event.start?.dateTime ?? event.start?.date ?? "");
+      const serviceKey = event.extendedProperties?.private?.service as ServiceKey | undefined;
+      const serviceLabel =
+        (serviceKey && SERVICES[serviceKey]?.label) ??
+        event.summary?.split(" - ").slice(1).join(" - ") ??
+        "Turno";
+
+      return {
+        eventId: event.id!,
+        dateLabel: formatDayLabel(start),
+        timeLabel: formatTimeLabel(start),
+        serviceLabel,
+      };
+    });
+}
+
+export async function cancelBooking(input: {
+  eventId: string;
+  phone: string;
+}): Promise<{ ok: true } | { ok: false; error: string }> {
+  const calendar = getCalendarClient();
+  const calendarId = getCalendarId();
+  const targetDigits = onlyDigits(input.phone);
+
+  let event;
+  try {
+    const response = await calendar.events.get({ calendarId, eventId: input.eventId });
+    event = response.data;
+  } catch {
+    return { ok: false, error: "No encontramos ese turno." };
+  }
+
+  // Revalida contra el evento real (no confía ciegamente en el eventId que
+  // manda el cliente) que sea un turno del sitio y que el teléfono coincida.
+  const isOwnBooking = event.extendedProperties?.private?.source === BOOKING_SOURCE_TAG;
+  const phoneMatches = extractPhoneDigits(event.description) === targetDigits;
+
+  if (!isOwnBooking || !phoneMatches) {
+    return { ok: false, error: "No encontramos ese turno con ese teléfono." };
+  }
+
+  await calendar.events.delete({ calendarId, eventId: input.eventId });
   return { ok: true };
 }

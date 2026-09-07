@@ -2,8 +2,11 @@
 
 import { Component, type ReactNode } from "react";
 
-type Props = { children: ReactNode };
+type Props = { children: ReactNode; fallbackMessage?: string };
 type State = { hasError: boolean };
+
+const DEFAULT_MESSAGE =
+  "No pudimos cargar el sistema de reservas. Contactanos directamente para coordinar tu turno.";
 
 export default class BookingErrorBoundary extends Component<Props, State> {
   state: State = { hasError: false };
@@ -21,8 +24,7 @@ export default class BookingErrorBoundary extends Component<Props, State> {
       return (
         <div className="rounded-sm border border-white/10 bg-white/5 p-8 text-center">
           <p className="text-sm text-white/70">
-            No pudimos cargar el sistema de reservas. Escribinos por WhatsApp
-            más abajo para coordinar tu turno.
+            {this.props.fallbackMessage ?? DEFAULT_MESSAGE}
           </p>
         </div>
       );

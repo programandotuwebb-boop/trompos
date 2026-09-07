@@ -1,7 +1,7 @@
 import FadeIn from "@/components/FadeIn";
 import TeamCard from "@/components/TeamCard";
-import BookingForm from "@/components/BookingForm";
 import CalendarBooking from "@/components/CalendarBooking";
+import CancelBooking from "@/components/CancelBooking";
 import BookingErrorBoundary from "@/components/BookingErrorBoundary";
 import { siteConfig } from "@/lib/site-content";
 
@@ -20,38 +20,37 @@ export default function TurnoSection() {
         </FadeIn>
 
         <FadeIn delayMs={100} className="mt-10">
-          <BookingErrorBoundary>
-            <CalendarBooking />
-          </BookingErrorBoundary>
+          <div className="rounded-sm bg-ink p-6 sm:p-10">
+            <BookingErrorBoundary>
+              <CalendarBooking />
+            </BookingErrorBoundary>
+
+            <div className="mt-8 border-t border-white/10 pt-6">
+              <BookingErrorBoundary fallbackMessage="No pudimos cargar la cancelación de turnos. Contactanos directamente para coordinarlo.">
+                <CancelBooking />
+              </BookingErrorBoundary>
+            </div>
+          </div>
         </FadeIn>
 
-        <div className="mt-12 grid gap-10 lg:grid-cols-2">
-          <FadeIn delayMs={150} className="flex flex-col gap-8">
-            <div className="rounded-2xl bg-beige-dark p-6 sm:p-10">
-              <div className="flex justify-center">
-                {siteConfig.team.map((person) => (
-                  <TeamCard key={person.name} {...person} />
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <p className="mb-3 text-sm text-body">¿Preferís coordinar por WhatsApp?</p>
-              <BookingForm />
+        <div className="mt-12 grid gap-6 sm:grid-cols-2">
+          <FadeIn delayMs={150}>
+            <div className="flex h-64 items-center justify-center rounded-2xl bg-beige-dark p-6">
+              {siteConfig.team.map((person) => (
+                <TeamCard key={person.name} {...person} />
+              ))}
             </div>
           </FadeIn>
 
-          <FadeIn delayMs={200} className="flex h-full min-h-[420px] flex-col lg:min-h-0">
-            <div className="min-h-[320px] flex-1 overflow-hidden rounded-2xl shadow-sm">
-              <iframe
-                src={siteConfig.mapEmbedUrl}
-                title="Ubicación de Janeiro Barber Studio en Google Maps"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                className="h-full w-full border-0"
-              />
-            </div>
-            <p className="mt-4 text-sm text-body">
+          <FadeIn delayMs={200} className="flex h-64 flex-col overflow-hidden rounded-2xl shadow-sm">
+            <iframe
+              src={siteConfig.mapEmbedUrl}
+              title="Ubicación de Janeiro Barber Studio en Google Maps"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              className="h-full w-full flex-1 border-0"
+            />
+            <p className="bg-beige-dark px-4 py-2 text-xs text-body">
               {siteConfig.address}{" "}
               <a
                 href={directionsUrl}

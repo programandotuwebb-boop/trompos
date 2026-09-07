@@ -147,7 +147,7 @@ export default function CalendarBooking() {
   }
 
   return (
-    <div className="rounded-sm bg-ink p-6 text-white sm:p-10">
+    <div className="text-white">
       <p className="text-xs tracking-[0.4em] text-bronze">RESERVA ONLINE</p>
       <h3 className="mt-3 font-serif text-2xl sm:text-3xl">Reservá tu turno</h3>
 
