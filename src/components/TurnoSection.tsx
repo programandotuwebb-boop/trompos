@@ -1,6 +1,8 @@
 import FadeIn from "@/components/FadeIn";
 import TeamCard from "@/components/TeamCard";
 import BookingForm from "@/components/BookingForm";
+import CalendarBooking from "@/components/CalendarBooking";
+import BookingErrorBoundary from "@/components/BookingErrorBoundary";
 import { siteConfig } from "@/lib/site-content";
 
 const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
@@ -17,8 +19,14 @@ export default function TurnoSection() {
           </h2>
         </FadeIn>
 
+        <FadeIn delayMs={100} className="mt-10">
+          <BookingErrorBoundary>
+            <CalendarBooking />
+          </BookingErrorBoundary>
+        </FadeIn>
+
         <div className="mt-12 grid gap-10 lg:grid-cols-2">
-          <FadeIn delayMs={100} className="flex flex-col gap-8">
+          <FadeIn delayMs={150} className="flex flex-col gap-8">
             <div className="rounded-2xl bg-beige-dark p-6 sm:p-10">
               <div className="flex justify-center">
                 {siteConfig.team.map((person) => (
@@ -27,7 +35,10 @@ export default function TurnoSection() {
               </div>
             </div>
 
-            <BookingForm />
+            <div>
+              <p className="mb-3 text-sm text-body">¿Preferís coordinar por WhatsApp?</p>
+              <BookingForm />
+            </div>
           </FadeIn>
 
           <FadeIn delayMs={200} className="flex h-full min-h-[420px] flex-col lg:min-h-0">
