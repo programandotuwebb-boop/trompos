@@ -1,0 +1,20 @@
+<svg width="800" height="1000" viewBox="0 0 800 1000" xmlns="http://www.w3.org/2000/svg">
+  <!-- Placeholder: reemplazar por foto real del interior del estudio -->
+  <defs>
+    <linearGradient id="bg1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1a1a1b"/>
+      <stop offset="100%" stop-color="#0c0c0d"/>
+    </linearGradient>
+    <radialGradient id="glow1" cx="50%" cy="30%" r="60%">
+      <stop offset="0%" stop-color="#b08d57" stop-opacity="0.18"/>
+      <stop offset="100%" stop-color="#b08d57" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="1000" fill="url(#bg1)"/>
+  <rect width="800" height="1000" fill="url(#glow1)"/>
+  <g stroke="#b08d57" stroke-opacity="0.6" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M260 620 L260 460 L400 380 L540 460 L540 620"/>
+    <line x1="230" y1="620" x2="570" y2="620"/>
+    <rect x="370" y="500" width="60" height="120"/>
+  </g>
+</svg>

@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import IntroSection from "@/components/IntroSection";
 import TurnoSection from "@/components/TurnoSection";
+import GallerySection from "@/components/GallerySection";
 
 export default function Home() {
   return (
@@ -8,7 +9,7 @@ export default function Home() {
       <Hero />
       <IntroSection />
       <TurnoSection />
-      {/* Próximas secciones: Galería, Footer */}
+      <GallerySection />
     </>
   );
 }
