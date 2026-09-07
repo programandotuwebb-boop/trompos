@@ -71,14 +71,14 @@ function capitalize(text: string): string {
 }
 
 function formatDayLabel(day: Date): string {
-  return capitalize(
-    new Intl.DateTimeFormat("es-AR", {
-      weekday: "long",
-      day: "numeric",
-      month: "numeric",
-      timeZone: BA_TIMEZONE,
-    }).format(day)
+  const weekday = capitalize(
+    new Intl.DateTimeFormat("es-AR", { weekday: "long", timeZone: BA_TIMEZONE }).format(day)
   );
+  // Se arma "día/mes" a mano: el formato combinado de Intl para es-AR
+  // devuelve "7-9" en vez de "7/9", que se confunde con un rango de fechas.
+  const dayNumber = new Intl.DateTimeFormat("es-AR", { day: "numeric", timeZone: BA_TIMEZONE }).format(day);
+  const monthNumber = new Intl.DateTimeFormat("es-AR", { month: "numeric", timeZone: BA_TIMEZONE }).format(day);
+  return `${weekday} ${dayNumber}/${monthNumber}`;
 }
 
 function formatTimeLabel(date: Date): string {
