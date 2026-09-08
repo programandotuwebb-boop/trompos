@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cancelBooking } from "@/lib/google-calendar";
+import { sendCancellationEmail } from "@/lib/email";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -28,6 +29,16 @@ export async function POST(request: NextRequest) {
 
     if (!result.ok) {
       return NextResponse.json({ error: result.error }, { status: 404 });
+    }
+
+    if (result.email) {
+      await sendCancellationEmail({
+        to: result.email,
+        name: result.name ?? "",
+        serviceLabel: result.serviceLabel,
+        dateLabel: result.dateLabel,
+        timeLabel: result.timeLabel,
+      });
     }
 
     return NextResponse.json({ success: true });

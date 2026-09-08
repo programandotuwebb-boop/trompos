@@ -1,4 +1,5 @@
 import { google } from "googleapis";
+import { onlyDigits } from "@/lib/validation";
 
 const BA_TIMEZONE = "America/Argentina/Buenos_Aires";
 const BUSINESS_START_HOUR = 9;
@@ -181,7 +182,11 @@ export async function createBooking(input: {
   service: ServiceKey;
   name: string;
   phone: string;
-}): Promise<{ ok: true } | { ok: false; error: string }> {
+  email?: string;
+}): Promise<
+  | { ok: true; dateLabel: string; timeLabel: string }
+  | { ok: false; error: string }
+> {
   const start = new Date(input.startISO);
   const end = new Date(start.getTime() + SERVICES[input.service].durationMinutes * 60 * 1000);
 
@@ -195,24 +200,29 @@ export async function createBooking(input: {
     return { ok: false, error: "Ese horario ya no está disponible. Elegí otro, por favor." };
   }
 
+  const description = input.email
+    ? `Teléfono: ${input.phone}\nEmail: ${input.email}`
+    : `Teléfono: ${input.phone}`;
+
   await calendar.events.insert({
     calendarId,
     requestBody: {
       summary: `Turno: ${input.name} - ${SERVICES[input.service].label}`,
-      description: `Teléfono: ${input.phone}`,
+      description,
       start: { dateTime: start.toISOString(), timeZone: BA_TIMEZONE },
       end: { dateTime: end.toISOString(), timeZone: BA_TIMEZONE },
       extendedProperties: {
-        private: { source: BOOKING_SOURCE_TAG, service: input.service },
+        private: {
+          source: BOOKING_SOURCE_TAG,
+          service: input.service,
+          name: input.name,
+          ...(input.email ? { email: input.email } : {}),
+        },
       },
     },
   });
 
-  return { ok: true };
-}
-
-function onlyDigits(text: string): string {
-  return text.replace(/\D/g, "");
+  return { ok: true, dateLabel: formatDayLabel(start), timeLabel: formatTimeLabel(start) };
 }
 
 function extractPhoneDigits(description?: string | null): string {
@@ -271,7 +281,17 @@ export async function findBookingsByPhone(phone: string): Promise<BookingSummary
 export async function cancelBooking(input: {
   eventId: string;
   phone: string;
-}): Promise<{ ok: true } | { ok: false; error: string }> {
+}): Promise<
+  | {
+      ok: true;
+      name?: string;
+      email?: string;
+      serviceLabel: string;
+      dateLabel: string;
+      timeLabel: string;
+    }
+  | { ok: false; error: string }
+> {
   const calendar = getCalendarClient();
   const calendarId = getCalendarId();
   const targetDigits = onlyDigits(input.phone);
@@ -293,6 +313,20 @@ export async function cancelBooking(input: {
     return { ok: false, error: "No encontramos ese turno con ese teléfono." };
   }
 
+  const start = new Date(event.start?.dateTime ?? event.start?.date ?? "");
+  const serviceKey = event.extendedProperties?.private?.service as ServiceKey | undefined;
+  const serviceLabel = (serviceKey && SERVICES[serviceKey]?.label) ?? "Turno";
+  const name = event.extendedProperties?.private?.name;
+  const email = event.extendedProperties?.private?.email;
+
   await calendar.events.delete({ calendarId, eventId: input.eventId });
-  return { ok: true };
+
+  return {
+    ok: true,
+    name,
+    email,
+    serviceLabel,
+    dateLabel: formatDayLabel(start),
+    timeLabel: formatTimeLabel(start),
+  };
 }

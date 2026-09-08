@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { findBookingsByPhone } from "@/lib/google-calendar";
+import { isValidPhone } from "@/lib/validation";
 
 export const dynamic = "force-dynamic";
 export const runtime = "nodejs";
@@ -14,7 +15,7 @@ export async function POST(request: NextRequest) {
 
   const { phone } = (body ?? {}) as Record<string, unknown>;
 
-  if (typeof phone !== "string" || phone.trim().length < 6) {
+  if (typeof phone !== "string" || !isValidPhone(phone)) {
     return NextResponse.json({ error: "Ingresá un teléfono válido." }, { status: 400 });
   }
 

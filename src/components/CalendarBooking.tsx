@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { isValidPhone } from "@/lib/validation";
 
 type ServiceKey = "corte" | "corte_barba";
 
@@ -27,6 +28,7 @@ export default function CalendarBooking() {
   const [selectedSlot, setSelectedSlot] = useState<SelectedSlot | null>(null);
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [confirmedSlot, setConfirmedSlot] = useState<SelectedSlot | null>(null);
@@ -92,6 +94,11 @@ export default function CalendarBooking() {
     event.preventDefault();
     if (!service || !selectedSlot) return;
 
+    if (!isValidPhone(phone)) {
+      setSubmitError("Ingresá un teléfono válido (10 a 13 dígitos).");
+      return;
+    }
+
     setSubmitting(true);
     setSubmitError(null);
 
@@ -104,6 +111,7 @@ export default function CalendarBooking() {
           service,
           name,
           phone,
+          ...(email.trim() ? { email: email.trim() } : {}),
         }),
       });
       const data = await res.json();
@@ -142,6 +150,7 @@ export default function CalendarBooking() {
     setSelectedSlot(null);
     setName("");
     setPhone("");
+    setEmail("");
     setSubmitError(null);
     setConfirmedSlot(null);
   }
@@ -283,6 +292,20 @@ export default function CalendarBooking() {
                 onChange={(e) => setPhone(e.target.value)}
                 className="w-full border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white outline-none transition-colors focus:border-bronze"
                 placeholder="11 1234 5678"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="booking-email" className="mb-1.5 block text-xs tracking-wide text-white/60">
+                Mail (opcional)
+              </label>
+              <input
+                id="booking-email"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="w-full border border-white/15 bg-white/5 px-4 py-2.5 text-sm text-white outline-none transition-colors focus:border-bronze"
+                placeholder="Para recibir la confirmación por mail"
               />
             </div>
 

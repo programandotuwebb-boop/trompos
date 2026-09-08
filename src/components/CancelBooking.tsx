@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { isValidPhone } from "@/lib/validation";
 
 type Booking = {
   eventId: string;
@@ -25,6 +26,12 @@ export default function CancelBooking() {
 
   async function handleSearch(event: React.FormEvent) {
     event.preventDefault();
+
+    if (!isValidPhone(phone)) {
+      setSearchError("Ingresá un teléfono válido (10 a 13 dígitos).");
+      return;
+    }
+
     setSearching(true);
     setSearchError(null);
     setNotice(null);
