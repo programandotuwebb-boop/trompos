@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Parallax from "@/components/Parallax";
 import { siteConfig } from "@/lib/site-content";
-import { getServicePrices, formatPrice } from "@/lib/pricing";
+import { getServicePrices } from "@/lib/pricing";
+import { formatPrice } from "@/lib/format";
 
 export default async function Hero() {
   const prices = await getServicePrices();

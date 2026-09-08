@@ -96,7 +96,7 @@ export default function CancelBooking() {
       <button
         type="button"
         onClick={() => setPhase("form")}
-        className="text-xs tracking-wide text-white/50 underline underline-offset-4 transition-colors hover:text-bronze"
+        className="flex w-full items-center justify-center gap-2 border border-white/20 px-6 py-4 text-sm font-medium tracking-wide text-white transition-all duration-300 hover:border-bronze hover:bg-white/5 sm:w-fit"
       >
         ¿Ya reservaste? Cancelar turno
       </button>
@@ -104,7 +104,7 @@ export default function CancelBooking() {
   }
 
   return (
-    <div className="rounded-sm border border-white/10 bg-white/5 p-6">
+    <div className="rounded-sm border border-white/10 bg-white/5 p-6 sm:p-8">
       {phase === "form" && (
         <form onSubmit={handleSearch} className="flex flex-col gap-3 sm:flex-row sm:items-end">
           <div className="flex-1">
@@ -170,8 +170,8 @@ export default function CancelBooking() {
                   </p>
 
                   {confirmingId === booking.eventId ? (
-                    <div className="flex flex-wrap items-center gap-3">
-                      <span className="text-xs text-white/60">
+                    <div className="flex flex-wrap items-center gap-3 rounded-sm border border-red-500/40 bg-red-500/10 p-3">
+                      <span className="text-xs text-red-100/80">
                         ¿Seguro que querés cancelar el turno del {booking.dateLabel} a las{" "}
                         {booking.timeLabel}?
                       </span>
@@ -179,7 +179,7 @@ export default function CancelBooking() {
                         type="button"
                         onClick={() => handleCancel(booking.eventId)}
                         disabled={cancelingId === booking.eventId}
-                        className="text-xs tracking-wide text-bronze underline underline-offset-4 disabled:opacity-50"
+                        className="text-xs font-medium tracking-wide text-red-300 underline underline-offset-4 transition-colors hover:text-red-200 disabled:opacity-50"
                       >
                         {cancelingId === booking.eventId ? "Cancelando…" : "Sí, cancelar"}
                       </button>

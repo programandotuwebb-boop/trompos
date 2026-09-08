@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { isValidPhone } from "@/lib/validation";
+import { formatPrice } from "@/lib/format";
 
 type ServiceKey = "corte" | "corte_barba";
 
@@ -17,7 +18,11 @@ type Step = "service" | "slots" | "details" | "success";
 
 type SelectedSlot = { iso: string; timeLabel: string; dayLabel: string };
 
-export default function CalendarBooking() {
+type CalendarBookingProps = {
+  prices: Record<string, number>;
+};
+
+export default function CalendarBooking({ prices }: CalendarBookingProps) {
   const [step, setStep] = useState<Step>("service");
   const [service, setService] = useState<ServiceKey | null>(null);
   const [weekOffset, setWeekOffset] = useState(0);
@@ -170,7 +175,9 @@ export default function CalendarBooking() {
               className="rounded-sm border border-white/15 px-6 py-5 text-left transition-all duration-300 hover:border-bronze hover:bg-white/5"
             >
               <p className="font-serif text-lg">{s.label}</p>
-              <p className="mt-1 text-sm text-white/50">{s.duration}</p>
+              <p className="mt-1 text-sm text-white/50">
+                {s.duration} — {formatPrice(prices[s.label])}
+              </p>
             </button>
           ))}
         </div>

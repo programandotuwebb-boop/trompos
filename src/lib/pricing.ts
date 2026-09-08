@@ -72,7 +72,3 @@ const getCachedPrices = unstable_cache(
 export async function getServicePrices(): Promise<Record<string, number>> {
   return getCachedPrices();
 }
-
-export function formatPrice(price: number): string {
-  return `$${price.toLocaleString("es-AR")}`;
-}

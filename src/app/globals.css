@@ -92,14 +92,28 @@ body {
   }
 }
 
-/* Oculta la scrollbar del carrusel de la galería sin perder el scroll táctil */
-.no-scrollbar {
-  scrollbar-width: none;
-  -ms-overflow-style: none;
+/* Marquee infinito de la galería de productos: la tira está duplicada una
+   vez, así que animar del -50% al 0% del ancho total hace que el final de
+   cada vuelta calce pixel a pixel con el inicio, sin salto visible. */
+@media (prefers-reduced-motion: no-preference) {
+  @keyframes marquee-right {
+    from {
+      transform: translateX(-50%);
+    }
+    to {
+      transform: translateX(0%);
+    }
+  }
+
+  .marquee-track {
+    animation: marquee-right 40s linear infinite;
+  }
 }
 
-.no-scrollbar::-webkit-scrollbar {
-  display: none;
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none;
+  }
 }
 
 /* Textura sutil de grano sobre fondos oscuros */

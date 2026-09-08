@@ -5,12 +5,15 @@ import CancelBooking from "@/components/CancelBooking";
 import BookingErrorBoundary from "@/components/BookingErrorBoundary";
 import SocialLinks from "@/components/SocialLinks";
 import { siteConfig } from "@/lib/site-content";
+import { getServicePrices } from "@/lib/pricing";
 
 const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
   siteConfig.address
 )}`;
 
-export default function TurnoSection() {
+export default async function TurnoSection() {
+  const prices = await getServicePrices();
+
   return (
     <section id="turno" className="bg-beige py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-6 sm:px-10">
@@ -23,7 +26,7 @@ export default function TurnoSection() {
         <FadeIn delayMs={100} className="mt-10">
           <div className="rounded-sm bg-ink p-6 sm:p-10">
             <BookingErrorBoundary>
-              <CalendarBooking />
+              <CalendarBooking prices={prices} />
             </BookingErrorBoundary>
 
             <div className="mt-8 border-t border-white/10 pt-6">
