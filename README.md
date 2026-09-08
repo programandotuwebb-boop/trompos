@@ -1,3 +1,20 @@
+## Cómo cambiar los precios de los servicios
+
+Los precios que se muestran en la web (Corte de pelo, Corte + Barba) salen de esta planilla:
+
+https://docs.google.com/spreadsheets/d/1DB57nXO9C2wYkMWoyKO8bIODI8SWvxOGsPtEMOINaMo/edit
+
+Para cambiar un precio:
+
+1. Abrí ese link.
+2. Cambiá el número de la celda **B2** (precio de "Corte de pelo") o **B3** (precio de "Corte + Barba"). Solo el número, sin el signo $ ni puntos.
+3. No hace falta guardar nada aparte, Google Sheets guarda solo.
+4. El precio nuevo va a aparecer en la web en un rato (hasta 15 minutos) — no hace falta avisarle a nadie ni tocar nada más.
+
+Si por algún motivo la web no puede leer la planilla en ese momento, sigue mostrando el último precio conocido, así que nunca va a quedar un espacio vacío o roto.
+
+---
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started

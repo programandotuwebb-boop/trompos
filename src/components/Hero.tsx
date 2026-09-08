@@ -1,8 +1,11 @@
 import Image from "next/image";
 import Parallax from "@/components/Parallax";
 import { siteConfig } from "@/lib/site-content";
+import { getServicePrices, formatPrice } from "@/lib/pricing";
 
-export default function Hero() {
+export default async function Hero() {
+  const prices = await getServicePrices();
+
   return (
     <section className="relative flex min-h-screen w-full items-end overflow-hidden bg-ink">
       <Parallax speed={0.3} className="absolute inset-x-0 -top-[15%] -bottom-[15%]">
@@ -62,7 +65,9 @@ export default function Hero() {
               {index > 0 && <span aria-hidden="true">·</span>}
               <span>
                 {item.name.toUpperCase()}{" "}
-                <span className="text-white/30">— {item.duration.toUpperCase()}</span>
+                <span className="text-white/30">
+                  — {item.duration.toUpperCase()} — {formatPrice(prices[item.name])}
+                </span>
               </span>
             </span>
           ))}

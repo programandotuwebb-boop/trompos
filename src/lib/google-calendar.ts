@@ -1,5 +1,6 @@
 import { google } from "googleapis";
 import { onlyDigits } from "@/lib/validation";
+import { getEnv } from "@/lib/env";
 
 const BA_TIMEZONE = "America/Argentina/Buenos_Aires";
 const BUSINESS_START_HOUR = 9;
@@ -27,14 +28,6 @@ export type BookingSummary = {
 // evento que pueda existir en el calendario (relevante sobre todo durante
 // las pruebas, ya que se usa un calendario personal).
 const BOOKING_SOURCE_TAG = "janeiro-web";
-
-function getEnv(name: string): string {
-  const value = process.env[name];
-  if (!value) {
-    throw new Error(`Falta configurar la variable de entorno ${name}`);
-  }
-  return value;
-}
 
 export function getCalendarId(): string {
   return getEnv("GOOGLE_CALENDAR_ID");
