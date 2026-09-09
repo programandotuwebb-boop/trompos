@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { isValidPhone } from "@/lib/validation";
 import { formatPrice } from "@/lib/format";
+import { siteConfig } from "@/lib/site-content";
 
 type ServiceKey = "corte" | "corte_barba";
 
@@ -334,7 +335,7 @@ export default function CalendarBooking({ prices }: CalendarBookingProps) {
           <p className="font-serif text-xl text-bronze">¡Turno confirmado!</p>
           <p className="mt-3 text-sm leading-relaxed text-white/80">
             Te esperamos {confirmedSlot.dayLabel.toLowerCase()} a las{" "}
-            {confirmedSlot.timeLabel} en Janeiro Barber Studio.
+            {confirmedSlot.timeLabel} en {siteConfig.fullName}.
           </p>
           <button
             type="button"

@@ -1,20 +1,20 @@
 export const siteConfig = {
-  name: "Janeiro",
-  fullName: "Janeiro Barber Studio",
+  name: "Trompo's",
+  fullName: "Trompo's Barber Studio",
   tagline: "Barber Studio",
   // Dominio propio a confirmar — placeholder hasta que se compre/asigne uno real.
-  domain: "janeirobarberstudio.com",
+  domain: "tromposbarberstudio.com",
   address: "Jorge Newbery 2460, Ciudad Autónoma de Buenos Aires",
   mapEmbedUrl:
     "https://www.google.com/maps?q=Jorge+Newbery+2460,+Ciudad+Aut%C3%B3noma+de+Buenos+Aires&output=embed",
   hero: {
     eyebrow: "Barber Studio",
     title: "El corte que te define.",
-    subtitle: "Reservá tu turno en Janeiro.",
+    subtitle: "Reservá tu turno en Trompo's.",
     cta: "Reservar turno",
   },
   intro: {
-    eyebrow: "Janeiro",
+    eyebrow: "Trompo's",
     title: "Un espacio propio",
     // Copy placeholder: confirmar posicionamiento/tono definitivo con el cliente.
     description:
@@ -42,11 +42,11 @@ export const siteConfig = {
   ],
   whatsapp: {
     phoneHref: "5491159944065",
-    message: "Hola! Quiero reservar un turno en Janeiro Barber Studio.",
+    message: "Hola! Quiero reservar un turno en Trompo's Barber Studio.",
   },
   // TODO: reemplazar por el @ y el link reales cuando existan las cuentas.
   socials: {
-    instagram: { handle: "@janeirobarberstudio", url: "https://instagram.com/janeirobarberstudio" },
-    facebook: { handle: "Janeiro Barber Studio", url: "https://facebook.com/janeirobarberstudio" },
+    instagram: { handle: "@tromposbarberstudio", url: "https://instagram.com/tromposbarberstudio" },
+    facebook: { handle: "Trompo's Barber Studio", url: "https://facebook.com/tromposbarberstudio" },
   },
 } as const;

@@ -18,16 +18,16 @@ const inter = Inter({
 });
 
 // Dominio propio a confirmar — placeholder hasta que se compre/asigne uno real.
-const siteUrl = "https://janeirobarberstudio.com";
+const siteUrl = "https://tromposbarberstudio.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Janeiro Barber Studio – Barbería en Ciudad Autónoma de Buenos Aires",
-    template: "%s | Janeiro Barber Studio",
+    default: "Trompo's Barber Studio – Barbería en Ciudad Autónoma de Buenos Aires",
+    template: "%s | Trompo's Barber Studio",
   },
   description:
-    "Janeiro Barber Studio, barbería en Jorge Newbery, Ciudad Autónoma de Buenos Aires. Cortes de pelo y arreglos de barba con atención personalizada.",
+    "Trompo's Barber Studio, barbería en Jorge Newbery, Ciudad Autónoma de Buenos Aires. Cortes de pelo y arreglos de barba con atención personalizada.",
   keywords: [
     "barbería Jorge Newbery",
     "barbería CABA",
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     "corte de pelo hombre Buenos Aires",
     "arreglo de barba CABA",
   ],
-  authors: [{ name: "Janeiro Barber Studio" }],
+  authors: [{ name: "Trompo's Barber Studio" }],
   alternates: {
     canonical: "/",
   },
@@ -44,10 +44,10 @@ export const metadata: Metadata = {
     type: "website",
     locale: "es_AR",
     url: siteUrl,
-    siteName: "Janeiro Barber Studio",
-    title: "Janeiro Barber Studio – Barbería en Ciudad Autónoma de Buenos Aires",
+    siteName: "Trompo's Barber Studio",
+    title: "Trompo's Barber Studio – Barbería en Ciudad Autónoma de Buenos Aires",
     description:
-      "Janeiro Barber Studio, barbería en Jorge Newbery, CABA. Cortes de pelo y arreglos de barba.",
+      "Trompo's Barber Studio, barbería en Jorge Newbery, CABA. Cortes de pelo y arreglos de barba.",
   },
   robots: {
     index: true,

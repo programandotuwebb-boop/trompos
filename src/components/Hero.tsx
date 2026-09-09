@@ -12,7 +12,7 @@ export default async function Hero() {
       <Parallax speed={0.3} className="absolute inset-x-0 -top-[15%] -bottom-[15%]">
         <Image
           src="/images/hero-placeholder.svg"
-          alt="Interior de Janeiro Barber Studio"
+          alt="Interior de Trompo's Barber Studio"
           fill
           priority
           unoptimized

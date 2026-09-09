@@ -18,7 +18,7 @@ export default function IntroSection() {
           {/*
             Copy placeholder: texto genérico de presentación a confirmar con el
             cliente antes de publicar (no hay historia/posicionamiento definitivo
-            todavía para Janeiro Barber Studio).
+            todavía para Trompo's Barber Studio).
           */}
           <p className="mt-6 max-w-md leading-relaxed text-white/60">
             {siteConfig.intro.description}
@@ -34,7 +34,7 @@ export default function IntroSection() {
           <div className="relative mx-auto aspect-[4/5] w-[78%] overflow-hidden rounded-sm sm:w-[72%] md:absolute md:right-0 md:top-0 md:w-[65%]">
             <Image
               src="/images/intro-3.jpg"
-              alt="Corte de pelo con tijera y peine en Janeiro Barber Studio"
+              alt="Corte de pelo con tijera y peine en Trompo's Barber Studio"
               fill
               sizes="(min-width: 768px) 45vw, 70vw"
               className="object-cover grayscale transition-all duration-700 ease-out hover:scale-[1.04] hover:grayscale-0"
@@ -44,7 +44,7 @@ export default function IntroSection() {
           <div className="relative -mt-16 ml-0 aspect-[4/5] w-[62%] overflow-hidden rounded-sm border border-bronze/40 shadow-2xl shadow-black/50 sm:w-[56%] md:absolute md:left-0 md:bottom-0 md:top-auto md:mt-0 md:w-[46%]">
             <Image
               src="/images/intro-2.webp"
-              alt="Arreglo de barba en Janeiro Barber Studio"
+              alt="Arreglo de barba en Trompo's Barber Studio"
               fill
               sizes="(min-width: 768px) 32vw, 55vw"
               className="object-cover grayscale transition-all duration-700 ease-out hover:scale-[1.04] hover:grayscale-0"

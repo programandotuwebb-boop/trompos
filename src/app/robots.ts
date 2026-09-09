@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://janeirobarberstudio.com/sitemap.xml",
+    sitemap: "https://tromposbarberstudio.com/sitemap.xml",
   };
 }

@@ -44,7 +44,7 @@ export default function SocialLinks({ className = "" }: { className?: string }) 
         href={siteConfig.socials.instagram.url}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Instagram de Janeiro Barber Studio"
+        aria-label={`Instagram de ${siteConfig.fullName}`}
         className="transition-colors hover:text-bronze"
       >
         <InstagramIcon className="h-5 w-5" />
@@ -53,7 +53,7 @@ export default function SocialLinks({ className = "" }: { className?: string }) 
         href={siteConfig.socials.facebook.url}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Facebook de Janeiro Barber Studio"
+        aria-label={`Facebook de ${siteConfig.fullName}`}
         className="transition-colors hover:text-bronze"
       >
         <FacebookIcon className="h-5 w-5" />

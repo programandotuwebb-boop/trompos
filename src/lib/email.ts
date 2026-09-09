@@ -1,7 +1,7 @@
 import { Resend } from "resend";
 import { siteConfig } from "@/lib/site-content";
 
-const DEFAULT_FROM = "Janeiro Barber Studio <onboarding@resend.dev>";
+const DEFAULT_FROM = `${siteConfig.fullName} <onboarding@resend.dev>`;
 
 type BookingEmailInput = {
   to: string;
@@ -42,7 +42,7 @@ export async function sendBookingConfirmationEmail(input: BookingEmailInput): Pr
   const { to, name, serviceLabel, dateLabel, timeLabel } = input;
   await sendEmail({
     to,
-    subject: "Confirmación de tu turno en Janeiro Barber Studio",
+    subject: `Confirmación de tu turno en ${siteConfig.fullName}`,
     text: `Hola ${name},
 
 Tu turno quedó confirmado:
@@ -56,7 +56,7 @@ Dirección: ${siteConfig.address}
 Si necesitás cancelarlo, podés hacerlo desde la web ingresando el teléfono con el que reservaste.
 
 Te esperamos,
-Janeiro Barber Studio`,
+${siteConfig.fullName}`,
   });
 }
 
@@ -64,13 +64,13 @@ export async function sendCancellationEmail(input: BookingEmailInput): Promise<v
   const { to, name, serviceLabel, dateLabel, timeLabel } = input;
   await sendEmail({
     to,
-    subject: "Tu turno en Janeiro Barber Studio fue cancelado",
+    subject: `Tu turno en ${siteConfig.fullName} fue cancelado`,
     text: `Hola ${name},
 
 Confirmamos que tu turno del ${dateLabel} a las ${timeLabel} (${serviceLabel}) fue cancelado.
 
 Si fue un error o querés reservar otro horario, podés hacerlo desde la web cuando quieras.
 
-Janeiro Barber Studio`,
+${siteConfig.fullName}`,
   });
 }
