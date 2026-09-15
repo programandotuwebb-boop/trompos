@@ -37,7 +37,7 @@ export const siteConfig = {
       name: "Tomás",
       phone: "11.5994.4065",
       phoneHref: "5491159944065",
-      photo: "/images/tomas.jpg",
+      photo: "/images/andy.jpg",
     },
   ],
   whatsapp: {

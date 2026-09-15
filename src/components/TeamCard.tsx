@@ -18,7 +18,7 @@ export default function TeamCard({ name, phone, phoneHref, photo }: TeamCardProp
           fill
           unoptimized={!photo}
           sizes="128px"
-          className="object-cover"
+          className="object-cover object-[50%_25%]"
         />
       </div>
 
