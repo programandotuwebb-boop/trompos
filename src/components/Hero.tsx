@@ -3,6 +3,7 @@ import Parallax from "@/components/Parallax";
 import { siteConfig } from "@/lib/site-content";
 import { getServicePrices } from "@/lib/pricing";
 import { formatPrice } from "@/lib/format";
+import styles from "./Hero.module.css";
 
 export default async function Hero() {
   const prices = await getServicePrices();
@@ -32,10 +33,22 @@ export default async function Hero() {
         </p>
 
         <h1
-          className="reveal-up mt-5 max-w-3xl font-serif text-6xl leading-[1.05] text-white sm:text-7xl md:text-8xl"
-          style={{ animationDelay: "120ms" }}
+          className={`${styles.title} mt-5 max-w-3xl font-serif text-6xl leading-[1.05] text-white sm:text-7xl md:text-8xl`}
         >
-          {siteConfig.hero.title}
+          <span className={styles.text}>{siteConfig.hero.title}</span>
+          <span className={styles.scissorsTrack} aria-hidden="true">
+            <svg className={styles.scissors} viewBox="0 0 64 40" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" focusable="false">
+              <g className={styles.bladeTop}>
+                <ellipse cx="10" cy="10" rx="6" ry="4.5" />
+                <path d="M15 12.5 29 20 57 29" />
+              </g>
+              <g className={styles.bladeBottom}>
+                <ellipse cx="10" cy="30" rx="6" ry="4.5" />
+                <path d="M15 27.5 29 20 57 11" />
+              </g>
+              <circle cx="29" cy="20" r="2" />
+            </svg>
+          </span>
         </h1>
 
         <p

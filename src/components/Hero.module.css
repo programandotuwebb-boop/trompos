@@ -1,0 +1,90 @@
+.title {
+  position: relative;
+}
+
+.text {
+  display: block;
+}
+
+/* Decorative only: no layout space, pointer interception or hidden heading. */
+.scissorsTrack {
+  display: none;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  color: var(--color-beige);
+}
+
+.scissors {
+  position: absolute;
+  /* Cross the first line's letters even when the heading wraps. */
+  top: 0.525em;
+  left: 0;
+  width: clamp(36px, 0.65em, 56px);
+  height: auto;
+  /* The pivot follows the same edge as the text reveal. */
+  transform: translate(-45.3125%, -50%);
+  overflow: visible;
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .text {
+    animation: cutReveal 1.35s linear backwards, cutSettle 1.35s ease-out;
+    transform-origin: left center;
+  }
+
+  .scissorsTrack {
+    display: block;
+    animation: cutTravel 1.35s linear;
+  }
+
+  .scissors {
+    animation: cutPresence 1.35s linear;
+  }
+
+  .bladeTop,
+  .bladeBottom {
+    transform-origin: 29px 20px;
+    animation: snip 0.225s ease-in-out 6;
+  }
+
+  .bladeBottom {
+    animation-name: snipReverse;
+  }
+
+  /* Matching stops keep the cutting pivot and reveal edge in sync at any width.
+     No forwards fill: the original, unclipped type is restored after the cut. */
+  @keyframes cutReveal {
+    0%, 8% { clip-path: inset(-10% 100% -10% -2%); }
+    88%, 100% { clip-path: inset(-10% 0% -10% -2%); }
+  }
+
+  @keyframes cutTravel {
+    0%, 8% { transform: translateX(0); }
+    88%, 100% { transform: translateX(100%); }
+  }
+
+  @keyframes cutPresence {
+    0%, 100% { opacity: 0; }
+    8%, 86% { opacity: 0.85; }
+    96% { opacity: 0; }
+  }
+
+  @keyframes cutSettle {
+    0%, 100% { transform: none; }
+    25% { transform: skewX(-0.45deg) translateY(0.6px); }
+    55% { transform: skewX(0.3deg) translateY(-0.4px); }
+    88% { transform: none; }
+  }
+
+  @keyframes snip {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(-15deg); }
+  }
+
+  @keyframes snipReverse {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(15deg); }
+  }
+}
