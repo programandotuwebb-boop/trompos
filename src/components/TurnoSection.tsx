@@ -4,15 +4,12 @@ import CalendarBooking from "@/components/CalendarBooking";
 import CancelBooking from "@/components/CancelBooking";
 import BookingErrorBoundary from "@/components/BookingErrorBoundary";
 import { siteConfig } from "@/lib/site-content";
-import { getServicePrices } from "@/lib/pricing";
 
 const directionsUrl = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
-  siteConfig.address
+  siteConfig.address,
 )}`;
 
 export default async function TurnoSection() {
-  const prices = await getServicePrices();
-
   return (
     <section tabIndex={-1} id="turno" className="bg-beige py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-6 sm:px-10">
@@ -25,7 +22,7 @@ export default async function TurnoSection() {
         <FadeIn delayMs={100} className="mt-10">
           <div className="rounded-sm bg-ink p-6 sm:p-10">
             <BookingErrorBoundary>
-              <CalendarBooking prices={prices} />
+              <CalendarBooking />
             </BookingErrorBoundary>
 
             <div className="mt-8 border-t border-white/10 pt-6">
@@ -36,7 +33,11 @@ export default async function TurnoSection() {
           </div>
         </FadeIn>
 
-        <div id="ubicacion" tabIndex={-1} className="mt-12 grid gap-6 sm:grid-cols-2">
+        <div
+          id="ubicacion"
+          tabIndex={-1}
+          className="mt-12 grid gap-6 sm:grid-cols-2"
+        >
           <FadeIn delayMs={150}>
             <div className="flex h-full flex-col items-center justify-center gap-4 rounded-2xl bg-beige-dark p-6">
               {siteConfig.team.map((person) => (
@@ -45,7 +46,10 @@ export default async function TurnoSection() {
             </div>
           </FadeIn>
 
-          <FadeIn delayMs={200} className="flex min-h-[280px] flex-col overflow-hidden rounded-2xl shadow-sm">
+          <FadeIn
+            delayMs={200}
+            className="flex min-h-[280px] flex-col overflow-hidden rounded-2xl shadow-sm"
+          >
             <iframe
               src={siteConfig.mapEmbedUrl}
               title={`Ubicación de ${siteConfig.fullName} en Google Maps`}

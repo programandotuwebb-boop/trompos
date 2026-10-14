@@ -1,52 +1,34 @@
-import { NextRequest, NextResponse } from "next/server";
-import { cancelBooking } from "@/lib/google-calendar";
+import { changeBooking, bookingResult } from "@/lib/booking/service";
+import { phone, uuid } from "@/lib/booking/validation";
+import { rateLimit } from "@/lib/booking/auth";
+import { failure, jsonBody } from "@/lib/booking/http";
+import { NextResponse } from "next/server";
 import { sendCancellationEmail } from "@/lib/email";
-
-export const dynamic = "force-dynamic";
-export const runtime = "nodejs";
-
-export async function POST(request: NextRequest) {
-  let body: unknown;
+export async function POST(request: Request) {
   try {
-    body = await request.json();
-  } catch {
-    return NextResponse.json({ error: "Solicitud inválida." }, { status: 400 });
-  }
-
-  const { eventId, phone } = (body ?? {}) as Record<string, unknown>;
-
-  if (
-    typeof eventId !== "string" ||
-    eventId.length === 0 ||
-    typeof phone !== "string" ||
-    phone.trim().length < 6
-  ) {
-    return NextResponse.json({ error: "Datos incompletos o inválidos." }, { status: 400 });
-  }
-
-  try {
-    const result = await cancelBooking({ eventId, phone: phone.trim() });
-
-    if (!result.ok) {
-      return NextResponse.json({ error: result.error }, { status: 404 });
-    }
-
-    if (result.email) {
-      await sendCancellationEmail({
-        to: result.email,
-        name: result.name ?? "",
-        serviceLabel: result.serviceLabel,
-        dateLabel: result.dateLabel,
-        timeLabel: result.timeLabel,
-      });
-    }
-
-    return NextResponse.json({ success: true });
-  } catch (error) {
-    console.error("[booking/cancel]", error);
-    return NextResponse.json(
-      { error: "No pudimos cancelar el turno. Intentá de nuevo en un momento." },
-      { status: 502 }
+    const body = (await jsonBody(request)) as {
+      phone: unknown;
+      eventId: unknown;
+    };
+    const digits = phone.parse(body.phone);
+    await rateLimit(`cancel:${digits}`, 10);
+    const id = uuid.parse(
+      typeof body.eventId === "string"
+        ? body.eventId.replace(/^db:/, "")
+        : body.eventId,
     );
+    const booking = await changeBooking(id, "CANCEL", { phone: digits });
+    const summary = bookingResult(booking);
+    if (booking.customer_email)
+      await sendCancellationEmail({
+        to: booking.customer_email,
+        name: booking.customer_name,
+        serviceLabel: booking.service_name,
+        dateLabel: summary.dateLabel,
+        timeLabel: summary.timeLabel,
+      });
+    return NextResponse.json({ success: true });
+  } catch (e) {
+    return failure(e);
   }
 }

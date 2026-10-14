@@ -1,31 +1,24 @@
+import { availability } from "@/lib/booking/service";
+import { failure } from "@/lib/booking/http";
+import { z } from "zod";
 import { NextRequest, NextResponse } from "next/server";
-import { getWeekAvailability, SERVICES, type ServiceKey } from "@/lib/google-calendar";
-
 export const dynamic = "force-dynamic";
-export const runtime = "nodejs";
-
-const MAX_WEEK_OFFSET = 8;
-
 export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const service = searchParams.get("service");
   const weekOffset = Number(searchParams.get("weekOffset") ?? "0");
-
-  if (!service || !(service in SERVICES)) {
-    return NextResponse.json({ error: "Servicio inválido." }, { status: 400 });
-  }
-  if (!Number.isInteger(weekOffset) || weekOffset < 0 || weekOffset > MAX_WEEK_OFFSET) {
-    return NextResponse.json({ error: "Semana inválida." }, { status: 400 });
-  }
-
+  const MAX_WEEK_OFFSET = 8;
   try {
-    const days = await getWeekAvailability(service as ServiceKey, weekOffset);
-    return NextResponse.json({ days });
-  } catch (error) {
-    console.error("[booking/availability]", error);
+    const serviceId = z.uuid().parse(service);
+    const professionalId = z
+      .union([z.uuid(), z.literal("any")])
+      .parse(searchParams.get("professionalId") ?? "any");
+    z.number().int().min(0).max(MAX_WEEK_OFFSET).parse(weekOffset);
     return NextResponse.json(
-      { error: "No pudimos cargar los turnos. Intentá de nuevo en un momento." },
-      { status: 502 }
+      { days: await availability(serviceId, professionalId, weekOffset) },
+      { headers: { "Cache-Control": "no-store" } },
     );
+  } catch (error) {
+    return failure(error);
   }
 }

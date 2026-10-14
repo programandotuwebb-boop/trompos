@@ -8,6 +8,8 @@ type Booking = {
   dateLabel: string;
   timeLabel: string;
   serviceLabel: string;
+  professionalName?: string;
+  status?: string;
 };
 
 type Phase = "collapsed" | "form" | "results";
@@ -43,13 +45,14 @@ export default function CancelBooking() {
         body: JSON.stringify({ phone }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? "No pudimos buscar tus turnos.");
+      if (!res.ok)
+        throw new Error(data.error ?? "No pudimos buscar tus turnos.");
 
       setBookings(data.bookings as Booking[]);
       setPhase("results");
     } catch (err) {
       setSearchError(
-        err instanceof Error ? err.message : "No pudimos buscar tus turnos."
+        err instanceof Error ? err.message : "No pudimos buscar tus turnos.",
       );
     } finally {
       setSearching(false);
@@ -67,14 +70,17 @@ export default function CancelBooking() {
         body: JSON.stringify({ eventId, phone }),
       });
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error ?? "No pudimos cancelar el turno.");
+      if (!res.ok)
+        throw new Error(data.error ?? "No pudimos cancelar el turno.");
 
       setBookings((prev) => prev.filter((b) => b.eventId !== eventId));
       setConfirmingId(null);
-      setNotice("Turno cancelado. El horario ya quedó libre para otra persona.");
+      setNotice(
+        "Turno cancelado. El horario ya quedó libre para otra persona.",
+      );
     } catch (err) {
       setCancelError(
-        err instanceof Error ? err.message : "No pudimos cancelar el turno."
+        err instanceof Error ? err.message : "No pudimos cancelar el turno.",
       );
     } finally {
       setCancelingId(null);
@@ -106,9 +112,15 @@ export default function CancelBooking() {
   return (
     <div className="rounded-sm border border-white/10 bg-white/5 p-6 sm:p-8">
       {phase === "form" && (
-        <form onSubmit={handleSearch} className="flex flex-col gap-3 sm:flex-row sm:items-end">
+        <form
+          onSubmit={handleSearch}
+          className="flex flex-col gap-3 sm:flex-row sm:items-end"
+        >
           <div className="flex-1">
-            <label htmlFor="cancel-phone" className="mb-1.5 block text-xs tracking-wide text-white/60">
+            <label
+              htmlFor="cancel-phone"
+              className="mb-1.5 block text-xs tracking-wide text-white/60"
+            >
               Ingresá el teléfono con el que reservaste
             </label>
             <input
@@ -137,7 +149,9 @@ export default function CancelBooking() {
               Cancelar
             </button>
           </div>
-          {searchError && <p className="text-sm text-white/70 sm:basis-full">{searchError}</p>}
+          {searchError && (
+            <p className="text-sm text-white/70 sm:basis-full">{searchError}</p>
+          )}
         </form>
       )}
 
@@ -157,7 +171,9 @@ export default function CancelBooking() {
           {notice && <p className="mt-3 text-sm text-bronze">{notice}</p>}
 
           {bookings.length === 0 ? (
-            <p className="mt-4 text-sm text-white/60">No encontramos turnos con ese número.</p>
+            <p className="mt-4 text-sm text-white/60">
+              No encontramos turnos con ese número.
+            </p>
           ) : (
             <ul className="mt-4 space-y-3">
               {bookings.map((booking) => (
@@ -166,14 +182,17 @@ export default function CancelBooking() {
                   className="flex flex-col gap-2 border-t border-white/10 pt-3 first:border-t-0 first:pt-0 sm:flex-row sm:items-center sm:justify-between"
                 >
                   <p className="text-sm text-white/80">
-                    {booking.dateLabel} a las {booking.timeLabel} · {booking.serviceLabel}
+                    {booking.dateLabel} a las {booking.timeLabel} ·{" "}
+                    {booking.serviceLabel}
+                    {booking.professionalName &&
+                      ` · ${booking.professionalName}`}
                   </p>
 
                   {confirmingId === booking.eventId ? (
                     <div className="flex flex-wrap items-center gap-3 rounded-sm border border-red-500/40 bg-red-500/10 p-3">
                       <span className="text-xs text-red-100/80">
-                        ¿Seguro que querés cancelar el turno del {booking.dateLabel} a las{" "}
-                        {booking.timeLabel}?
+                        ¿Seguro que querés cancelar el turno del{" "}
+                        {booking.dateLabel} a las {booking.timeLabel}?
                       </span>
                       <button
                         type="button"
@@ -181,7 +200,9 @@ export default function CancelBooking() {
                         disabled={cancelingId === booking.eventId}
                         className="text-xs font-medium tracking-wide text-red-300 underline underline-offset-4 transition-colors hover:text-red-200 disabled:opacity-50"
                       >
-                        {cancelingId === booking.eventId ? "Cancelando…" : "Sí, cancelar"}
+                        {cancelingId === booking.eventId
+                          ? "Cancelando…"
+                          : "Sí, cancelar"}
                       </button>
                       <button
                         type="button"
@@ -205,7 +226,9 @@ export default function CancelBooking() {
             </ul>
           )}
 
-          {cancelError && <p className="mt-3 text-sm text-white/70">{cancelError}</p>}
+          {cancelError && (
+            <p className="mt-3 text-sm text-white/70">{cancelError}</p>
+          )}
         </div>
       )}
     </div>

@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
 import { Playfair_Display, Inter } from "next/font/google";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
 import "./globals.css";
 
 const playfairDisplay = Playfair_Display({
@@ -23,7 +20,8 @@ const siteUrl = "https://tromposbarberstudio.com";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Trompo's Barber Studio – Barbería en Ciudad Autónoma de Buenos Aires",
+    default:
+      "Trompo's Barber Studio – Barbería en Ciudad Autónoma de Buenos Aires",
     template: "%s | Trompo's Barber Studio",
   },
   description:
@@ -45,7 +43,8 @@ export const metadata: Metadata = {
     locale: "es_AR",
     url: siteUrl,
     siteName: "Trompo's Barber Studio",
-    title: "Trompo's Barber Studio – Barbería en Ciudad Autónoma de Buenos Aires",
+    title:
+      "Trompo's Barber Studio – Barbería en Ciudad Autónoma de Buenos Aires",
     description:
       "Trompo's Barber Studio, barbería en Jorge Newbery, CABA. Cortes de pelo y arreglos de barba.",
   },
@@ -62,10 +61,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={`${playfairDisplay.variable} ${inter.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-cream text-body">
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <WhatsAppButton />
+        {children}
       </body>
     </html>
   );

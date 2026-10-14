@@ -1,17 +1,6 @@
 ## Cómo cambiar los precios de los servicios
 
-Los precios que se muestran en la web (Corte de pelo, Corte + Barba) salen de esta planilla:
-
-https://docs.google.com/spreadsheets/d/1DB57nXO9C2wYkMWoyKO8bIODI8SWvxOGsPtEMOINaMo/edit
-
-Para cambiar un precio:
-
-1. Abrí ese link.
-2. Cambiá el número de la celda **B2** (precio de "Corte de pelo") o **B3** (precio de "Corte + Barba"). Solo el número, sin el signo $ ni puntos.
-3. No hace falta guardar nada aparte, Google Sheets guarda solo.
-4. El precio nuevo va a aparecer en la web en un rato (hasta 15 minutos) — no hace falta avisarle a nadie ni tocar nada más.
-
-Si por algún motivo la web no puede leer la planilla en ese momento, sigue mostrando el último precio conocido, así que nunca va a quedar un espacio vacío o roto.
+Ingresá a `/admin` como OWNER y abrí **Servicios**. Los precios y duraciones se guardan en PostgreSQL; no se usa Google Sheets ni Calendar.
 
 ---
 
@@ -51,3 +40,8 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Reservas multiprofesional y panel privado
+
+Ver [instalación, migración, cuentas y pruebas](docs/RESERVAS-MULTIPROFESIONAL.md).
+PostgreSQL es la única agenda. Configurar `DATABASE_URL` y `APP_ORIGIN`, ejecutar las migraciones y crear la primera cuenta OWNER. La aplicación no requiere credenciales de Google.
