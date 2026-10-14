@@ -20,55 +20,55 @@
   /* Cross the first line's letters even when the heading wraps. */
   top: 0.525em;
   left: 0;
-  width: clamp(36px, 0.65em, 56px);
+  width: clamp(88px, 1.4em, 128px);
   height: auto;
-  /* The pivot follows the same edge as the text reveal. */
-  transform: translate(-45.3125%, -50%);
+  /* The blade tips follow the reveal; the handles stay inside narrow screens. */
+  transform: translate(-89%, -50%);
   overflow: visible;
   opacity: 0;
 }
 
 @media (prefers-reduced-motion: no-preference) {
   .text {
-    animation: cutReveal 1.35s linear backwards, cutSettle 1.35s ease-out;
+    animation: cutReveal 2.1s linear backwards, cutSettle 2.1s ease-out;
     transform-origin: left center;
   }
 
   .scissorsTrack {
     display: block;
-    animation: cutTravel 1.35s linear;
+    animation: cutTravel 2.1s linear;
   }
 
   .scissors {
-    animation: cutPresence 1.35s linear;
+    animation: cutPresence 2.1s linear;
   }
 
   .bladeTop,
   .bladeBottom {
     transform-origin: 29px 20px;
-    animation: snip 0.225s ease-in-out 6;
+    animation: snip 2.1s ease-in-out;
   }
 
   .bladeBottom {
     animation-name: snipReverse;
   }
 
-  /* Matching stops keep the cutting pivot and reveal edge in sync at any width.
+  /* Matching stops keep the blade tips and reveal edge in sync at any width.
      No forwards fill: the original, unclipped type is restored after the cut. */
   @keyframes cutReveal {
-    0%, 8% { clip-path: inset(-10% 100% -10% -2%); }
-    88%, 100% { clip-path: inset(-10% 0% -10% -2%); }
+    0%, 4% { clip-path: inset(-10% 100% -10% -2%); }
+    58%, 100% { clip-path: inset(-10% 0% -10% -2%); }
   }
 
   @keyframes cutTravel {
-    0%, 8% { transform: translateX(0); }
-    88%, 100% { transform: translateX(100%); }
+    0%, 4% { transform: translateX(0); }
+    58% { transform: translateX(100%); animation-timing-function: ease-out; }
+    100% { transform: translateX(calc(100% + clamp(16px, (100vw - 100%) / 2 - 40px, 140px))); }
   }
 
   @keyframes cutPresence {
     0%, 100% { opacity: 0; }
-    8%, 86% { opacity: 0.85; }
-    96% { opacity: 0; }
+    4%, 88% { opacity: 0.95; }
   }
 
   @keyframes cutSettle {
@@ -79,12 +79,25 @@
   }
 
   @keyframes snip {
-    0%, 100% { transform: rotate(0deg); }
-    50% { transform: rotate(-15deg); }
+    0%, 14%, 28%, 42%, 58%, 76%, 94%, 100% { transform: rotate(10deg); }
+    7%, 21%, 35%, 50%, 67%, 85% { transform: rotate(-17deg); }
   }
 
   @keyframes snipReverse {
-    0%, 100% { transform: rotate(0deg); }
-    50% { transform: rotate(15deg); }
+    0%, 14%, 28%, 42%, 58%, 76%, 94%, 100% { transform: rotate(-10deg); }
+    7%, 21%, 35%, 50%, 67%, 85% { transform: rotate(17deg); }
+  }
+}
+
+/* On narrow screens the empty space is just above the line's right edge.
+   Lift the finishing cuts there instead of clipping the larger scissors. */
+@media (prefers-reduced-motion: no-preference) and (max-width: 1023px) {
+  .scissorsTrack { animation-name: cutTravelCompact; }
+
+  @keyframes cutTravelCompact {
+    0%, 4% { transform: translate(0, 0); }
+    58% { transform: translate(100%, 0); animation-timing-function: ease-out; }
+    65% { transform: translate(calc(100% + 5px), -0.9em); animation-timing-function: ease-out; }
+    100% { transform: translate(calc(100% + 16px), -0.9em); }
   }
 }

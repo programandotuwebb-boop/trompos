@@ -9,7 +9,7 @@ export default async function Hero() {
   const prices = await getServicePrices();
 
   return (
-    <section className="relative flex min-h-screen w-full items-end overflow-hidden bg-ink">
+    <section id="inicio" tabIndex={-1} className="relative flex min-h-screen w-full items-end overflow-hidden bg-ink">
       <Parallax speed={0.3} className="absolute inset-x-0 -top-[15%] -bottom-[15%]">
         <Image
           src="/images/hero-placeholder.svg"

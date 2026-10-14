@@ -5,7 +5,7 @@ export default function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="bg-ink py-12 text-white">
+    <footer id="contacto" tabIndex={-1} className="bg-ink py-12 text-white">
       <div className="mx-auto flex max-w-6xl flex-col items-center gap-10 px-6 text-center sm:flex-row sm:items-start sm:justify-between sm:px-10 sm:text-left">
         <div>
           <p className="font-serif text-2xl tracking-[0.15em]">

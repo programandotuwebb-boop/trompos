@@ -16,7 +16,7 @@ const trackProducts = [...products, ...products];
 
 export default function GallerySection() {
   return (
-    <section className="bg-ink py-20 sm:py-28">
+    <section id="productos" tabIndex={-1} className="bg-ink py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-6 sm:px-10">
         <FadeIn>
           <p className="text-xs tracking-[0.4em] text-bronze">PRODUCTOS</p>

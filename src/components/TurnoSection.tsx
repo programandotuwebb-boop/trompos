@@ -14,7 +14,7 @@ export default async function TurnoSection() {
   const prices = await getServicePrices();
 
   return (
-    <section id="turno" className="bg-beige py-20 sm:py-28">
+    <section tabIndex={-1} id="turno" className="bg-beige py-20 sm:py-28">
       <div className="mx-auto max-w-6xl px-6 sm:px-10">
         <FadeIn>
           <h2 className="font-serif text-4xl text-charcoal sm:text-5xl">
@@ -36,7 +36,7 @@ export default async function TurnoSection() {
           </div>
         </FadeIn>
 
-        <div className="mt-12 grid gap-6 sm:grid-cols-2">
+        <div id="ubicacion" tabIndex={-1} className="mt-12 grid gap-6 sm:grid-cols-2">
           <FadeIn delayMs={150}>
             <div className="flex h-full flex-col items-center justify-center gap-4 rounded-2xl bg-beige-dark p-6">
               {siteConfig.team.map((person) => (
